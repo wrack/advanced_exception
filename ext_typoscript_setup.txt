@@ -1,0 +1,20 @@
+plugin.tx_advanced_exception{
+    settings{
+        redirect {
+            pageUid = 
+            pageType = 
+            noCache = 1
+            noCacheHash = 1
+            section = 
+            additionalParams {
+
+            }
+        }
+    }
+    view {
+        template = Exception.html
+        templateRootPath = EXT:advanced_exception/Resources/Private/Templates/
+        partialRootPath = EXT:advanced_exception/Resources/Private/Partials/
+        layoutRootPath = EXT:advanced_exception/Resources/Private/Layouts/
+    }
+}
