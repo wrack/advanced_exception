@@ -10,18 +10,6 @@ namespace EricDepta\AdvancedException\Controller;
  */
 class BoxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 	/**
-	 * @var \HoA\Stagedeal\Service\TransloaditService
-	 */
-	protected $transloaditService;
-
-	/**
-	 * @param \HoA\Stagedeal\Service\TransloaditService $transloaditService
-	 */
-	public function injectTransloaditService(\HoA\Stagedeal\Service\TransloaditService $transloaditService) {
-		$this->transloaditService = $transloaditService;
-	}
-
-	/**
 	 * @var \EricDepta\AdvancedException\Service\SessionService
 	 */
 	protected $sessionService;
@@ -33,7 +21,11 @@ class BoxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 		$this->sessionService = $sessionService;
 	}
 	
-
+	/**
+	 * Show Error Box
+	 *
+	 * @return void
+	 */
 	public function showAction(){
 		$assign = unserialize($this->sessionService->restoreFromSession());
 		if(is_array($assign)){

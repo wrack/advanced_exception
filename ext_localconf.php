@@ -13,4 +13,15 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Core\\Error\\Producti
 		'Box' => 'show',
 	)	
 );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'EricDepta.' . $_EXTKEY,
+	'ExceptionTest',
+	array(
+		'Test' => 'show',
+	),
+	array(
+		'Test' => 'show',
+	)	
+);
 ?>

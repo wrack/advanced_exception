@@ -6,4 +6,10 @@ if (!defined('TYPO3_MODE'))	die ('Access denied.');
 	'ExceptionBox',
 	'Advanced Exception Box'
 );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	$_EXTKEY,
+	'ExceptionTest',
+	'Advanced Exception Tester'
+);
 ?>
