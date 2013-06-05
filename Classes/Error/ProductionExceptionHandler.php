@@ -34,6 +34,7 @@ class ProductionExceptionHandler extends \TYPO3\CMS\Core\Error\ProductionExcepti
 			'message' => $this->getMessage($exception),
 			'exception' => $exception,
 			'baseurl' => \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL'),
+			'backurl' => \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
 		);
 
 		//-- Redirect --//
