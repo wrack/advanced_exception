@@ -1,5 +1,10 @@
 plugin.tx_advanced_exception{
     settings{
+        
+        ## template, redirect, default ##
+        methode = template
+
+        ## for methode redirect ##
         redirect {
             pageUid = 
             pageType = 
@@ -11,8 +16,9 @@ plugin.tx_advanced_exception{
             }
         }
     }
+    
+    ## for methode template ##
     view {
-        template = Exception.html
         templateRootPath = EXT:advanced_exception/Resources/Private/Templates/
         partialRootPath = EXT:advanced_exception/Resources/Private/Partials/
         layoutRootPath = EXT:advanced_exception/Resources/Private/Layouts/

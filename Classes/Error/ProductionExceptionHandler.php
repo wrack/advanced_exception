@@ -37,31 +37,33 @@ class ProductionExceptionHandler extends \TYPO3\CMS\Core\Error\ProductionExcepti
 		);
 
 		//-- Redirect --//
-		$rset = $settings['settings']['redirect'];
-		if(!empty($rset['pageUid'])){
-			$ss = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('EricDepta\\AdvancedException\\Service\\SessionService');
-			$ss->writeToSession(serialize($assign));
+		if($settings['settings']['methode'] == 'redirect'){
+			$rset = $settings['settings']['redirect'];
+			if(!empty($rset['pageUid'])){
+				$ss = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('EricDepta\\AdvancedException\\Service\\SessionService');
+				$ss->writeToSession(serialize($assign));
 
-			$uriBuilder = $view->getControllerContext()->getUriBuilder();
-			\TYPO3\CMS\Core\Utility\HttpUtility::redirect(
-				$uriBuilder->reset()->setTargetPageUid($rset['pageUid'])->setTargetPageType($rset['pageType'])->setNoCache($rset['noCache'])->setUseCacheHash(!((boolean)$rset['noCacheHash']))->setSection($rset['section'])->setArguments($rset['additionalParams'])->build()
-			);
+				$uriBuilder = $view->getControllerContext()->getUriBuilder();
+				\TYPO3\CMS\Core\Utility\HttpUtility::redirect(
+					$uriBuilder->reset()->setTargetPageUid($rset['pageUid'])->setTargetPageType($rset['pageType'])->setNoCache($rset['noCache'])->setUseCacheHash(!((boolean)$rset['noCacheHash']))->setSection($rset['section'])->setArguments($rset['additionalParams'])->build()
+				);
+			}
 		}
 
 		//-- Custom Template --/
-		$vset = $settings['view'];
-		$template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($vset['templateRootPath']) . $vset['template'];
-		if(file_exists($template)){
-			$exp = explode('.',$vset['template']);
-			$format = $exp[1];
-			$view->setTemplatePathAndFilename($template);
-			$view->setPartialRootPath(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($vset['partialRootPath']));
-			$view->setLayoutRootPath(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($vset['layoutRootPath']));
-			$view->getRequest()->setControllerExtensionName('advanced_exception');
-			$view->setFormat($format);
-			$view->assignMultiple($assign);
-			echo $view->render();
-			return;
+		if($settings['settings']['methode'] == 'template'){
+			$vset = $settings['view'];
+			$template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($vset['templateRootPath']) . 'Exception.html';
+			if(file_exists($template)){
+				$view->setTemplatePathAndFilename($template);
+				$view->setPartialRootPath(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($vset['partialRootPath']));
+				$view->setLayoutRootPath(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($vset['layoutRootPath']));
+				$view->getRequest()->setControllerExtensionName('advanced_exception');
+				$view->setFormat('html');
+				$view->assignMultiple($assign);
+				echo $view->render();
+				return;
+			}
 		}
 		
 		//-- Default --//
