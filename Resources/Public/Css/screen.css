@@ -14,6 +14,7 @@ body {
 }
 .error-box { 
 	background-color: #FFFFFF;
+	border:.2em solid #333333;
     border-radius: 1em 1em 1em 1em;
     color: #666666;
     position:relative;
@@ -24,4 +25,25 @@ body {
     vertical-align: middle;
     width: 30%; 
 }
-#rainbow { position:absolute; top:2em; left:15%; max-height: 80%; }
+.error-box:before { 
+	background-color: #D41B1A;
+    border-radius: 4em 4em 4em 0.5em;
+    color: #FFFFFF;
+    content: "!!!";
+    display: block;
+    font-size: 2em;
+    height: 1em;
+    left: 100%;
+    padding: 0.5em;
+    position: absolute;
+    top: -2em;
+    width: 1em;
+} 
+#rainbow { left: -5%; max-height: 115%; position: absolute; top: -25%; }
+
+a, a:active { color:#D41B1A; text-decoration:none; font-weight:bold; text-transform:uppercase; }
+a:after, a:before { content:" Ƹ̵̡Ӝ̵̨̄Ʒ "; }
+a:after, a:before { content:" ✌(-‿-)✌ "; padding:0 1em; opacity:0; color:#C8CD18; }
+a:hover:before, a:hover:after { opacity:1; } 
+
+.error-box-trylink { text-align:center; }
