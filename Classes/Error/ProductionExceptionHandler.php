@@ -38,7 +38,7 @@ class ProductionExceptionHandler extends \TYPO3\CMS\Core\Error\ProductionExcepti
 		);
 
 		//-- Redirect --//
-		if($settings['settings']['methode'] == 'redirect'){
+		if($settings['settings']['method'] == 'redirect'){
 			$rset = $settings['settings']['redirect'];
 			if(!empty($rset['pageUid'])){
 				$ss = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('EricDepta\\AdvancedException\\Service\\SessionService');
@@ -52,7 +52,7 @@ class ProductionExceptionHandler extends \TYPO3\CMS\Core\Error\ProductionExcepti
 		}
 
 		//-- Custom Template --/
-		if($settings['settings']['methode'] == 'template'){
+		if($settings['settings']['method'] == 'template'){
 			$vset = $settings['view'];
 			$template = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($vset['templateRootPath']) . 'Exception.html';
 			if(file_exists($template)){
