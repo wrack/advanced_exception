@@ -1,5 +1,7 @@
 <f:layout name="Show" />
 
 <f:section name="main">
-	<f:render partial="Message" arguments="{title: title, exception: exception, backurl: backurl}" />
+	<f:if condition="{Error}">
+		<f:render partial="Message" arguments="{title: title, exception: exception, backurl: backurl}" />
+	</f:if>
 </f:section>

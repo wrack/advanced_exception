@@ -1,8 +1,8 @@
-plugin.tx_advanced_exception{
+plugin.tx_advancedexception{
     settings{
         
         ## template, redirect, default ##
-        methode = template
+        method = template
 
         ## for methode redirect ##
         redirect {

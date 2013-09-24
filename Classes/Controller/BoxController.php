@@ -1,5 +1,6 @@
 <?php
 namespace EricDepta\AdvancedException\Controller;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  *
@@ -29,11 +30,12 @@ class BoxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 	public function showAction(){
 		$assign = unserialize($this->sessionService->restoreFromSession());
 		if(is_array($assign)){
-			$this->view->assignMultiple(unserialize($this->sessionService->restoreFromSession()));
+			$this->view->assignMultiple($assign);
+			$this->view->assign('Error',1);
 		}else{
 			$this->view->assign('noError',1);
 		}
-		//$this->sessionService->cleanUpSession();
+		$this->sessionService->cleanUpSession();
 	}
 }
 ?>
